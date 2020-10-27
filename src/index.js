@@ -3,7 +3,7 @@ var btnGoRoom = document.getElementById("goRoom");
 const videoGrid = document.getElementById('video-grid')
 //const { v4: uuidV4 } = require('uuid')
 
-const socket = io('http://localhost:3000')
+const socket = io('https://video-sock-server.herokuapp.com/') //arg of io is url of signalling server
 
 btnGoRoom.addEventListener('click', (event) => {
   if(inputRoomNumber === '') {
@@ -12,10 +12,9 @@ btnGoRoom.addEventListener('click', (event) => {
   else{
     const ROOM_ID = inputRoomNumber.value
     console.log(ROOM_ID)
-    const myPeer = new Peer(undefined, {
-      host: 'localhost',
-      port: '3001'
-    })
+    //specify second argument object {host:domainname,port:value} to Peer() to use custom peer server
+    //default is peerjs open cloud server if no second argument is specified
+    const myPeer = new Peer(undefined)
     const myVideo = document.createElement('video')
     myVideo.muted = true
     const peers = {}
