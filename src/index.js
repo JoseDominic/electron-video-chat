@@ -14,7 +14,12 @@ btnGoRoom.addEventListener('click', (event) => {
     console.log(ROOM_ID)
     //specify second argument object {host:domainname,port:value} to Peer() to use custom peer server
     //default is peerjs open cloud server if no second argument is specified
-    const myPeer = new Peer(undefined)
+    const myPeer = new Peer(undefined,{
+      host:'video-peer-server.herokuapp.com',
+      port:443,
+      secure:true,
+      path:'/'
+    })
     const myVideo = document.createElement('video')
     myVideo.muted = true
     const peers = {}
